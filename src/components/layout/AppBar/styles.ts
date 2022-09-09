@@ -1,4 +1,4 @@
-import { Box, styled } from "@mui/material";
+import { Box, Menu, styled } from "@mui/material";
 import MuiMenuIcon from "@mui/icons-material/Menu";
 
 export const LogoWrapper = styled(Box)({
@@ -12,8 +12,14 @@ export const ButtonsWrapper = styled(Box)({
   justifyContent: "flex-end",
 });
 
-export const HamburgerMenuWrapper = styled(Box)({});
+export const HamburgerMenuWrapper = styled(Box)({
+  flexGrow: 0,
+});
 
 export const MenuIcon = styled(MuiMenuIcon)(({ theme }) => ({
   fontSize: theme.spacing(5),
+}));
+
+export const AppBarMenu = styled(Menu)(({ theme }) => ({
+  marginTop: theme.spacing(4),
 }));

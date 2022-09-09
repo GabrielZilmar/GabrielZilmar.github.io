@@ -6,27 +6,26 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import HomeIcon from "@mui/icons-material/Home";
 import {
+  AppBarMenu,
   ButtonsWrapper,
   HamburgerMenuWrapper,
   LogoWrapper,
   MenuIcon,
 } from "~/components/layout/AppBar/styles";
-import { IconButton, Menu, MenuItem } from "@mui/material";
+import { IconButton, MenuItem } from "@mui/material";
 
 const pages = ["About Me", "Resume", "Contact"];
 
 const AppBarComponent = () => {
-  const [openMenu, setOpenMenu] = useState<boolean>(false);
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
-  const handleOpenMenu = () => {
-    setOpenMenu(true);
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
   };
 
-  const handleCloseMenu = () => {
-    setOpenMenu(false);
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
   };
-
-  // Add anchorEl
 
   return (
     <AppBar position="sticky">
@@ -52,11 +51,16 @@ const AppBarComponent = () => {
           </ButtonsWrapper>
 
           <HamburgerMenuWrapper sx={{ display: { xs: "flex", sm: "none" } }}>
-            <IconButton size="large" onClick={handleOpenMenu} color="inherit">
+            <IconButton
+              size="large"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
               <MenuIcon />
             </IconButton>
-            <Menu
+            <AppBarMenu
               id="menu-appbar"
+              anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: "top",
                 horizontal: "right",
@@ -66,15 +70,15 @@ const AppBarComponent = () => {
                 vertical: "top",
                 horizontal: "right",
               }}
-              open={openMenu}
-              onClose={handleCloseMenu}
+              open={!!anchorElNav}
+              onClose={handleCloseNavMenu}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseMenu}>
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
-            </Menu>
+            </AppBarMenu>
           </HamburgerMenuWrapper>
         </Toolbar>
       </Container>

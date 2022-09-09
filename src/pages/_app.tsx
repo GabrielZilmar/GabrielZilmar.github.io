@@ -5,7 +5,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import "../styles/globals.css";
 import { AppContainer } from "~/components/layout/AppContainer";
 import { theme } from "~/styles/theme";
-import AppBar from "~/components/layout/AppBar";
+import AppBar from "~/components/layout/AppBar/AppBar";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

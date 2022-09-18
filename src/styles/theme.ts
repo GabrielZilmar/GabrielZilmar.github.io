@@ -21,7 +21,7 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: ["SofiaPro", "Roboto", "sans-serif"].join(","),
+    fontFamily: ["Roboto", "sans-serif"].join(","),
   },
   components: {
     MuiAccordionSummary: {

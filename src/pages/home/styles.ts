@@ -5,18 +5,17 @@ export const HomeContainer = styled(Container)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   gap: theme.spacing(1.5),
+  height: `calc(100vh - ${theme.spacing(8)})`,
+  alignItems: "center",
 
   [theme.breakpoints.down("sm")]: {
     flexWrap: "wrap",
   },
 }));
 
-export const InfoWrapper = styled(Box)({
-  border: "1px solid blue",
-});
+export const InfoWrapper = styled(Box)({});
 
 export const PhotoWrapper = styled(Box)({
-  border: "1px solid green",
   width: "25rem",
 });
 

@@ -1,4 +1,4 @@
-import { Box, CardMedia, Container, styled, Typography } from "@mui/material";
+import { Box, Container, styled, Typography } from "@mui/material";
 import Image from "next/image";
 
 export const HomeContainer = styled(Container)(({ theme }) => ({
@@ -30,4 +30,10 @@ export const InfoTitle = styled(Typography)({
 export const InfoDescriptionWrapper = styled(Box)(({ theme }) => ({
   marginTop: theme.spacing(1),
   width: "30rem",
+}));
+
+export const TechnologiesWrapper = styled(Box)(({ theme }) => ({
+  padding: theme.spacing(4),
+  gap: theme.spacing(2),
+  fontWeight: 600,
 }));

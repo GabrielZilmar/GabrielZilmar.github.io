@@ -1,4 +1,4 @@
-import { Typography, Chip } from "@mui/material";
+import { Typography, Chip, Stack } from "@mui/material";
 import {
   HomeContainer,
   InfoDescriptionWrapper,
@@ -6,7 +6,16 @@ import {
   InfoWrapper,
   PhotoWrapper,
   ProfilePhotoCard,
+  TechnologiesWrapper,
 } from "~/pages/home/styles";
+
+const TECHNOLOGIES = [
+  "Typescript",
+  "NodeJS",
+  "ReactJS",
+  "NextJS",
+  "PostgreSQL",
+];
 
 const HomePage = () => {
   return (
@@ -20,10 +29,13 @@ const HomePage = () => {
             the 1500s, when an unknown printer took a galley of type and
             scrambled it to make a type specimen book.
           </Typography>
-          <Chip label="Typescript" />
-          <Chip label="NodeJS" />
-          <Chip label="ReactJS" />
-          <Chip label="NextJS" />
+          <TechnologiesWrapper>
+            <Stack spacing={1} alignItems="center" direction="row">
+              {TECHNOLOGIES.map((technology) => (
+                <Chip key={technology} label={technology} color="secondary" />
+              ))}
+            </Stack>
+          </TechnologiesWrapper>
         </InfoDescriptionWrapper>
       </InfoWrapper>
       <PhotoWrapper>

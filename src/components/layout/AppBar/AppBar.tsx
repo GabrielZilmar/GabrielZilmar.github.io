@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import HomeIcon from "@mui/icons-material/Home";
 import {
   AppBarMenu,
+  AppBarToolbar,
   ButtonsWrapper,
   HamburgerMenuWrapper,
   LogoWrapper,
@@ -30,7 +31,7 @@ const AppBarComponent = () => {
   return (
     <AppBar position="sticky">
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <AppBarToolbar disableGutters>
           <LogoWrapper>
             <HomeIcon sx={{ mr: 1 }} />
             <Typography variant="h6" noWrap component="a" href="/">
@@ -80,7 +81,7 @@ const AppBarComponent = () => {
               ))}
             </AppBarMenu>
           </HamburgerMenuWrapper>
-        </Toolbar>
+        </AppBarToolbar>
       </Container>
     </AppBar>
   );

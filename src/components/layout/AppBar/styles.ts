@@ -1,4 +1,4 @@
-import { Box, Menu, styled } from "@mui/material";
+import { Box, Menu, styled, Toolbar } from "@mui/material";
 import MuiMenuIcon from "@mui/icons-material/Menu";
 
 export const LogoWrapper = styled(Box)({
@@ -22,4 +22,8 @@ export const MenuIcon = styled(MuiMenuIcon)(({ theme }) => ({
 
 export const AppBarMenu = styled(Menu)(({ theme }) => ({
   marginTop: theme.spacing(4),
+}));
+
+export const AppBarToolbar = styled(Toolbar)(({ theme }) => ({
+  height: theme.spacing(4),
 }));

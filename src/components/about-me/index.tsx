@@ -1,14 +1,13 @@
-import { Typography } from "@mui/material";
 import {
-  AboutMeContainer,
   AboutMeText,
   AboutMeTitle,
   AboutMeWrapper,
 } from "~/components/about-me/styles";
+import ContainerLayout from "~/components/layout/Container/Container";
 
 const AboutMe: React.FC = () => {
   return (
-    <AboutMeContainer id="about-me">
+    <ContainerLayout id="about-me">
       <AboutMeWrapper>
         <AboutMeTitle variant="h5">About Me</AboutMeTitle>
         <AboutMeText>
@@ -17,7 +16,7 @@ const AboutMe: React.FC = () => {
           ipsum dolor sit amet, consectetur adipiscing elit.
         </AboutMeText>
       </AboutMeWrapper>
-    </AboutMeContainer>
+    </ContainerLayout>
   );
 };
 

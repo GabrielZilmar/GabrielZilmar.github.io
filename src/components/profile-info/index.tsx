@@ -1,7 +1,7 @@
 import { Typography, Chip } from "@mui/material";
 import { useEffect, useState } from "react";
+import ContainerLayout from "~/components/layout/Container/Container";
 import {
-  ProfileInfoContainer,
   InfoDescriptionWrapper,
   InfoTitle,
   InfoWrapper,
@@ -44,7 +44,7 @@ const ProfileInfo: React.FC = () => {
   }, [viewport]);
 
   return (
-    <ProfileInfoContainer id="home">
+    <ContainerLayout id="home">
       <InfoWrapper>
         <InfoTitle variant="h4">Gabriel Zilmar</InfoTitle>
         <InfoTitle variant="h5">Software Engineer</InfoTitle>
@@ -75,7 +75,7 @@ const ProfileInfo: React.FC = () => {
           height={imageSize}
         />
       </PhotoWrapper>
-    </ProfileInfoContainer>
+    </ContainerLayout>
   );
 };
 

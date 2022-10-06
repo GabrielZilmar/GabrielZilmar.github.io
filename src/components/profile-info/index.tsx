@@ -11,10 +11,11 @@ import {
   TechnologiesContainer,
 } from "~/components/profile-info/styles";
 import { useViewport } from "~/hooks";
-import { theme } from "~/styles/theme";
+import { EXTRA_SMALL_BREAKPOINT, theme } from "~/styles/theme";
 
 const DEFAULT_IMAGE_SIZE = "416";
-const SMALL_IMAGE_SIZE = "130";
+const EXTRA_SMALL_IMAGE_SIZE = "92";
+const SMALL_IMAGE_SIZE = "140";
 const MEDIUM_IMAGE_SIZE = "316";
 
 const TECHNOLOGIES = [
@@ -34,7 +35,9 @@ const ProfileInfo: React.FC = () => {
     const smallBreakpoint = theme.breakpoints.values["sm"];
     const mediumBreakpoint = theme.breakpoints.values["md"];
 
-    if (currentWidth <= smallBreakpoint) {
+    if (currentWidth <= EXTRA_SMALL_BREAKPOINT) {
+      setImageSize(EXTRA_SMALL_IMAGE_SIZE);
+    } else if (currentWidth <= smallBreakpoint) {
       setImageSize(SMALL_IMAGE_SIZE);
     } else if (currentWidth <= mediumBreakpoint) {
       setImageSize(MEDIUM_IMAGE_SIZE);

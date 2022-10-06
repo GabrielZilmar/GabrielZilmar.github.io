@@ -14,7 +14,7 @@ import { useViewport } from "~/hooks";
 import { theme } from "~/styles/theme";
 
 const DEFAULT_IMAGE_SIZE = "416";
-const SMALL_IMAGE_SIZE = "216";
+const SMALL_IMAGE_SIZE = "130";
 const MEDIUM_IMAGE_SIZE = "316";
 
 const TECHNOLOGIES = [
@@ -44,15 +44,20 @@ const ProfileInfo: React.FC = () => {
   }, [viewport]);
 
   return (
-    <ContainerLayout id="home">
+    <ContainerLayout id="#">
       <InfoWrapper>
         <InfoTitle variant="h4">Gabriel Zilmar</InfoTitle>
         <InfoTitle variant="h5">Software Engineer</InfoTitle>
         <InfoDescriptionWrapper>
+          <Typography>Computer Science Graduate from PUC Minas.</Typography>
           <Typography>
-            Lorem Ipsum has been the industry`s standard dummy text ever since
-            the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book.
+            Working with variate technologies, focus in <b>Typescript</b> and
+            most modern stacks, and always looking for a <b>clean code</b> and a{" "}
+            <b>clean architecture</b>.
+          </Typography>
+          <Typography>
+            I have experience with new projects, talking with clients, and
+            MicroServices.
           </Typography>
           <TechnologiesContainer>
             <TechnologiesWrapper

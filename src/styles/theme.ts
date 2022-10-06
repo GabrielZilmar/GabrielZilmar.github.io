@@ -1,5 +1,7 @@
 import { createTheme } from "@mui/material";
 
+export const EXTRA_SMALL_BREAKPOINT = 320;
+
 export const theme = createTheme({
   palette: {
     background: {

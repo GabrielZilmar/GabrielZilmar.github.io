@@ -1,6 +1,5 @@
 import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
@@ -15,7 +14,7 @@ import {
 } from "~/components/layout/AppBar/styles";
 import { IconButton, MenuItem } from "@mui/material";
 
-const pages = ["About Me", "Resume", "Contact"];
+const pages = ["About Me", "Curriculum", "Contact"];
 
 const AppBarComponent = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);

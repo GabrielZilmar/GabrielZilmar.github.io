@@ -5,6 +5,10 @@ export const LogoWrapper = styled(Box)({
   display: "flex",
   alignItems: "center",
   flexGrow: 1,
+
+  ":hover": {
+    cursor: "pointer",
+  },
 });
 
 export const ButtonsWrapper = styled(Box)({

@@ -14,7 +14,14 @@ import {
 } from "~/components/layout/AppBar/styles";
 import { IconButton, MenuItem } from "@mui/material";
 
-const pages = ["About Me", "Curriculum", "Contact"];
+const pages: AppBarPagesType[] = [
+  {
+    id: "about-me",
+    name: "About Me",
+  },
+  { id: "curriculum", name: "Curriculum" },
+  { id: "contact", name: "Contact" },
+];
 
 const AppBarComponent = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
@@ -27,25 +34,48 @@ const AppBarComponent = () => {
     setAnchorElNav(null);
   };
 
+  const scrollToElementById = (id: string): void => {
+    const element = document.getElementById(id);
+    const navbarElement = document.getElementById("navbar");
+
+    if (!element || !navbarElement) {
+      return;
+    }
+
+    const headerHeight = navbarElement.offsetHeight;
+    const elementPosition = element.offsetTop - headerHeight;
+
+    setTimeout(() => {
+      window.scrollTo({
+        top: elementPosition,
+        behavior: "smooth",
+      });
+    }, 100);
+  };
+
   return (
-    <AppBar position="sticky">
+    <AppBar position="sticky" id="navbar">
       <Container maxWidth="xl">
         <AppBarToolbar disableGutters>
           <LogoWrapper>
-            <HomeIcon sx={{ mr: 1 }} />
-            <Typography variant="h6" noWrap component="a" href="/">
+            <HomeIcon sx={{ mr: 1 }} onClick={() => scrollToElementById("#")} />
+            <Typography
+              variant="h6"
+              noWrap
+              onClick={() => scrollToElementById("#")}
+            >
               HOME
             </Typography>
           </LogoWrapper>
 
           <ButtonsWrapper sx={{ display: { xs: "none", sm: "flex" } }}>
-            {pages.map((page) => (
+            {pages.map(({ id, name }) => (
               <Button
-                key={page}
-                onClick={() => console.log(page)}
+                key={id}
+                onClick={() => scrollToElementById(id)}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page}
+                {name}
               </Button>
             ))}
           </ButtonsWrapper>
@@ -73,9 +103,14 @@ const AppBarComponent = () => {
               open={!!anchorElNav}
               onClose={handleCloseNavMenu}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {pages.map(({ id, name }) => (
+                <MenuItem key={id} onClick={handleCloseNavMenu}>
+                  <Typography
+                    textAlign="center"
+                    onClick={() => scrollToElementById(id)}
+                  >
+                    {name}
+                  </Typography>
                 </MenuItem>
               ))}
             </AppBarMenu>

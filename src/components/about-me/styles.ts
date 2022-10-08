@@ -1,8 +1,8 @@
 import { Box, styled, Typography } from "@mui/material";
 
-export const AboutMeWrapper = styled(Box)(({ theme }) => ({
+export const AboutMeWrapper = styled(Box)({
   width: "40rem",
-}));
+});
 
 export const AboutMeTitle = styled(Typography)({
   fontWeight: 600,

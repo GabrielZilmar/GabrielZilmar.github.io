@@ -1,4 +1,4 @@
-type AppBarPagesType = {
+export type AppBarPagesType = {
   id: string;
   name: string;
 };

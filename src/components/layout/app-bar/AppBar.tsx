@@ -11,8 +11,9 @@ import {
   HamburgerMenuWrapper,
   LogoWrapper,
   MenuIcon,
-} from "~/components/layout/AppBar/styles";
+} from "~/components/layout/app-bar/styles";
 import { IconButton, MenuItem } from "@mui/material";
+import { AppBarPagesType } from "~/components/layout/app-bar/types";
 
 const pages: AppBarPagesType[] = [
   {
@@ -34,7 +35,14 @@ const AppBarComponent = () => {
     setAnchorElNav(null);
   };
 
+  const downloadCurriculum = (): void => {};
+
   const scrollToElementById = (id: string): void => {
+    const curriculumId = "curriculum";
+    if (id === curriculumId) {
+      return downloadCurriculum();
+    }
+
     const element = document.getElementById(id);
     const navbarElement = document.getElementById("navbar");
 

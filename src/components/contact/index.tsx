@@ -52,7 +52,6 @@ const Contact: React.FC = () => {
           </Card>
         </ContactWrapper>
       </ContactContainer>
-      {/* Add footer */}
     </ContainerLayout>
   );
 };

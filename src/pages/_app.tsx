@@ -5,7 +5,8 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import "../styles/globals.css";
 import { AppContainer } from "~/components/layout/AppContainer";
 import { theme } from "~/styles/theme";
-import AppBar from "~/components/layout/AppBar/AppBar";
+import AppBar from "~/components/layout/app-bar/AppBar";
+import CurriculumModalProvider from "~/hooks/useCurriculumModal";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -14,7 +15,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
-        <AppBar />
+        <CurriculumModalProvider>
+          <AppBar />
+        </CurriculumModalProvider>
         <AppContainer>
           <Component {...pageProps} />
         </AppContainer>

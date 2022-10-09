@@ -1,12 +1,14 @@
 import { AppProps } from "next/app";
 import Head from "next/head";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-
-import "../styles/globals.css";
 import { AppContainer } from "~/components/layout/AppContainer";
 import { theme } from "~/styles/theme";
 import AppBar from "~/components/layout/app-bar/AppBar";
 import CurriculumModalProvider from "~/hooks/useCurriculumModal";
+import { ToastContainer } from "react-toastify";
+
+import "../styles/globals.css";
+import "react-toastify/dist/ReactToastify.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -20,6 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         </CurriculumModalProvider>
         <AppContainer>
           <Component {...pageProps} />
+          <ToastContainer />
         </AppContainer>
         <CssBaseline />
       </ThemeProvider>

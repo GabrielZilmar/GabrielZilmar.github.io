@@ -11,9 +11,14 @@ import {
   HamburgerMenuWrapper,
   LogoWrapper,
   MenuIcon,
+  ModalContainer,
+  ModalContent,
+  ModalContentButton,
 } from "~/components/layout/app-bar/styles";
-import { IconButton, MenuItem } from "@mui/material";
+import { IconButton, MenuItem, Modal } from "@mui/material";
 import { AppBarPagesType } from "~/components/layout/app-bar/types";
+import { useCurriculumModal } from "~/hooks/useCurriculumModal";
+import useNavbarOptions from "~/hooks/useNavbar";
 
 const pages: AppBarPagesType[] = [
   {
@@ -25,6 +30,8 @@ const pages: AppBarPagesType[] = [
 ];
 
 const AppBarComponent = () => {
+  const { isOpen, close } = useCurriculumModal();
+  const { scrollToElementById, openCurriculum } = useNavbarOptions();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -35,97 +42,102 @@ const AppBarComponent = () => {
     setAnchorElNav(null);
   };
 
-  const downloadCurriculum = (): void => {};
-
-  const scrollToElementById = (id: string): void => {
-    const curriculumId = "curriculum";
-    if (id === curriculumId) {
-      return downloadCurriculum();
-    }
-
-    const element = document.getElementById(id);
-    const navbarElement = document.getElementById("navbar");
-
-    if (!element || !navbarElement) {
-      return;
-    }
-
-    const headerHeight = navbarElement.offsetHeight;
-    const elementPosition = element.offsetTop - headerHeight;
-
-    setTimeout(() => {
-      window.scrollTo({
-        top: elementPosition,
-        behavior: "smooth",
-      });
-    }, 100);
-  };
-
   return (
-    <AppBar position="sticky" id="navbar">
-      <Container maxWidth="xl">
-        <AppBarToolbar disableGutters>
-          <LogoWrapper>
-            <HomeIcon sx={{ mr: 1 }} onClick={() => scrollToElementById("#")} />
-            <Typography
-              variant="h6"
-              noWrap
-              onClick={() => scrollToElementById("#")}
-            >
-              HOME
-            </Typography>
-          </LogoWrapper>
-
-          <ButtonsWrapper sx={{ display: { xs: "none", sm: "flex" } }}>
-            {pages.map(({ id, name }) => (
-              <Button
-                key={id}
-                onClick={() => scrollToElementById(id)}
-                sx={{ my: 2, color: "white", display: "block" }}
+    <>
+      <AppBar position="sticky" id="navbar">
+        <Container maxWidth="xl">
+          <AppBarToolbar disableGutters>
+            <LogoWrapper>
+              <HomeIcon
+                sx={{ mr: 1 }}
+                onClick={() => scrollToElementById("#")}
+              />
+              <Typography
+                variant="h6"
+                noWrap
+                onClick={() => scrollToElementById("#")}
               >
-                {name}
-              </Button>
-            ))}
-          </ButtonsWrapper>
+                HOME
+              </Typography>
+            </LogoWrapper>
 
-          <HamburgerMenuWrapper sx={{ display: { xs: "flex", sm: "none" } }}>
-            <IconButton
-              size="large"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <AppBarMenu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={!!anchorElNav}
-              onClose={handleCloseNavMenu}
-            >
+            <ButtonsWrapper sx={{ display: { xs: "none", sm: "flex" } }}>
               {pages.map(({ id, name }) => (
-                <MenuItem key={id} onClick={handleCloseNavMenu}>
-                  <Typography
-                    textAlign="center"
-                    onClick={() => scrollToElementById(id)}
-                  >
-                    {name}
-                  </Typography>
-                </MenuItem>
+                <Button
+                  key={id}
+                  onClick={() => scrollToElementById(id)}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  {name}
+                </Button>
               ))}
-            </AppBarMenu>
-          </HamburgerMenuWrapper>
-        </AppBarToolbar>
-      </Container>
-    </AppBar>
+            </ButtonsWrapper>
+
+            <HamburgerMenuWrapper sx={{ display: { xs: "flex", sm: "none" } }}>
+              <IconButton
+                size="large"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+              <AppBarMenu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={!!anchorElNav}
+                onClose={handleCloseNavMenu}
+              >
+                {pages.map(({ id, name }) => (
+                  <MenuItem key={id} onClick={handleCloseNavMenu}>
+                    <Typography
+                      textAlign="center"
+                      onClick={() => scrollToElementById(id)}
+                    >
+                      {name}
+                    </Typography>
+                  </MenuItem>
+                ))}
+              </AppBarMenu>
+            </HamburgerMenuWrapper>
+          </AppBarToolbar>
+        </Container>
+      </AppBar>
+      <Modal
+        open={isOpen}
+        onClose={close}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <ModalContainer>
+          <Typography variant="h5" sx={{ fontWeight: 600 }}>
+            Select the curriculum language
+          </Typography>
+          <ModalContent>
+            <ModalContentButton
+              variant="contained"
+              onClick={() => openCurriculum("en-us")}
+            >
+              English - US
+            </ModalContentButton>
+            <ModalContentButton
+              variant="contained"
+              onClick={() => openCurriculum("pt-br")}
+            >
+              Portuguese - BR
+            </ModalContentButton>
+          </ModalContent>
+        </ModalContainer>
+      </Modal>
+    </>
   );
 };
 

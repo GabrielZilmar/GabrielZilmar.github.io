@@ -1,4 +1,4 @@
-import { Box, Menu, styled, Toolbar } from "@mui/material";
+import { Box, Button, Menu, styled, Toolbar } from "@mui/material";
 import MuiMenuIcon from "@mui/icons-material/Menu";
 
 export const LogoWrapper = styled(Box)({
@@ -30,4 +30,27 @@ export const AppBarMenu = styled(Menu)(({ theme }) => ({
 
 export const AppBarToolbar = styled(Toolbar)(({ theme }) => ({
   height: theme.spacing(4),
+}));
+
+export const ModalContainer = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  backgroundColor: theme.palette.background.paper,
+  borderRadius: theme.spacing(1.5),
+  padding: theme.spacing(2),
+}));
+
+export const ModalContent = styled(Box)(({ theme }) => ({
+  marginTop: theme.spacing(2),
+  display: "flex",
+  justifyContent: "space-evenly",
+  flexWrap: "wrap",
+  gap: theme.spacing(1),
+}));
+
+export const ModalContentButton = styled(Button)(({ theme }) => ({
+  backgroundColor: theme.palette.text.secondary,
+  fontWeight: 600,
 }));

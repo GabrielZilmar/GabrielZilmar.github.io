@@ -9,6 +9,7 @@ import {
   LinkedIn as LinkedInIcon,
   Phone as PhoneIcon,
   Email as EmailIcon,
+  GitHub as GitHubIcon,
 } from "@mui/icons-material/";
 import ContainerLayout from "~/components/layout/Container/Container";
 import useNotification from "~/hooks/useNotification";
@@ -18,6 +19,10 @@ const Contact: React.FC = () => {
     linkedin: {
       url: "https://www.linkedin.com/in/gabrielzilmar/",
       name: "gabrielzilmar",
+    },
+    github: {
+      url: "https://github.com/GabrielZilmar",
+      name: "GabrielZilmar",
     },
     phone: {
       url: "tel:+55-38-999731516",
@@ -54,6 +59,14 @@ const Contact: React.FC = () => {
             >
               <LinkedInIcon />
               <Typography>{contactData.linkedin.name}</Typography>
+            </ContactCardContent>
+          </Card>
+          <Card>
+            <ContactCardContent
+              onClick={() => openWindow(contactData.github.url)}
+            >
+              <GitHubIcon />
+              <Typography>{contactData.github.name}</Typography>
             </ContactCardContent>
           </Card>
           <Card>

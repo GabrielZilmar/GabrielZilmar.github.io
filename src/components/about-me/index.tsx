@@ -14,7 +14,7 @@ import { StacksType } from "~/components/about-me/types";
 
 const STACKS: StacksType[] = [
   {
-    stackName: "backend",
+    stackName: "Backend",
     stacks: [
       "NodeJS",
       "Express",
@@ -27,7 +27,7 @@ const STACKS: StacksType[] = [
     ],
   },
   {
-    stackName: "frontend",
+    stackName: "Frontend",
     stacks: ["React", "NextJS", "Redux", "Styled Components"],
   },
 ];
@@ -58,7 +58,7 @@ const AboutMe: React.FC = () => {
           <StacksContainer>
             {STACKS.map(({ stackName, stacks }) => (
               <StacksWrapper key={stackName}>
-                <AboutMeTitle>Backend</AboutMeTitle>
+                <AboutMeTitle>{stackName}</AboutMeTitle>
                 {stacks.map((stack) => (
                   <Typography key={stack}>
                     <TripOriginIcon /> {stack}

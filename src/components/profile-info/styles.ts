@@ -13,8 +13,10 @@ export const PhotoWrapper = styled(Box)(({ theme }) => ({
   },
 }));
 
-export const ProfilePhotoCard = styled(Image)(({ theme }) => ({
-  borderRadius: "50%",
+export const ProfilePhotoCard = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down("sm")]: {
+    marginBottom: theme.spacing(6),
+  },
 }));
 
 export const InfoTitle = styled(Typography)({

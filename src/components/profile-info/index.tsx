@@ -1,4 +1,5 @@
 import { Typography, Chip } from "@mui/material";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import ContainerLayout from "~/components/layout/Container/Container";
 import {
@@ -6,16 +7,16 @@ import {
   InfoTitle,
   InfoWrapper,
   PhotoWrapper,
-  ProfilePhotoCard,
   TechnologiesWrapper,
   TechnologiesContainer,
+  ProfilePhotoCard,
 } from "~/components/profile-info/styles";
 import { useViewport } from "~/hooks";
 import { EXTRA_SMALL_BREAKPOINT, theme } from "~/styles/theme";
 
 const DEFAULT_IMAGE_SIZE = "416";
-const EXTRA_SMALL_IMAGE_SIZE = "92";
-const SMALL_IMAGE_SIZE = "140";
+const EXTRA_SMALL_IMAGE_SIZE = "130";
+const SMALL_IMAGE_SIZE = "160";
 const MEDIUM_IMAGE_SIZE = "316";
 
 const TECHNOLOGIES = [
@@ -76,12 +77,14 @@ const ProfileInfo: React.FC = () => {
         </InfoDescriptionWrapper>
       </InfoWrapper>
       <PhotoWrapper>
-        <ProfilePhotoCard
-          alt="Profile Photo"
-          src="/assets/images/profile.webp"
-          width={imageSize}
-          height={imageSize}
-        />
+        <ProfilePhotoCard>
+          <Image
+            alt="Profile Photo"
+            src="/assets/images/profile.webp"
+            width={imageSize}
+            height={imageSize}
+          />
+        </ProfilePhotoCard>
       </PhotoWrapper>
     </ContainerLayout>
   );

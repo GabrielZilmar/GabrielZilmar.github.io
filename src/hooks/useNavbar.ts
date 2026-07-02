@@ -9,16 +9,16 @@ const useNavbarOptions = () => {
     const curriculumChoice = {
       "en-us": () => {
         window.open(
-          "/assets/pdfs/en-us-curriculum.pdf",
+          "/assets/pdfs/GabrielZilmar-resume.pdf",
           "_blank",
-          "noreferrer"
+          "noopener,noreferrer"
         );
       },
       "pt-br": () => {
         window.open(
-          "/assets/pdfs/pt-br-curriculum.pdf",
+          "/assets/pdfs/GabrielZilmar-resume-pt-br.pdf",
           "_blank",
-          "noreferrer"
+          "noopener,noreferrer"
         );
       },
     };

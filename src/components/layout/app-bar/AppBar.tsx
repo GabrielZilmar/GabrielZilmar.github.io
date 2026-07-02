@@ -3,12 +3,14 @@ import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
 import HomeIcon from "@mui/icons-material/Home";
 import {
   AppBarMenu,
   AppBarToolbar,
   ButtonsWrapper,
   HamburgerMenuWrapper,
+  LanguageSwitcher,
   LogoWrapper,
   MenuIcon,
   ModalContainer,
@@ -19,20 +21,22 @@ import { IconButton, MenuItem, Modal } from "@mui/material";
 import { AppBarPagesType } from "~/components/layout/app-bar/types";
 import { useCurriculumModal } from "~/hooks/useCurriculumModal";
 import useNavbarOptions from "~/hooks/useNavbar";
-
-const pages: AppBarPagesType[] = [
-  {
-    id: "about-me",
-    name: "About Me",
-  },
-  { id: "curriculum", name: "Curriculum" },
-  { id: "contact", name: "Contact" },
-];
+import { useLanguage } from "~/i18n/language-context";
 
 const AppBarComponent = () => {
   const { isOpen, close } = useCurriculumModal();
   const { scrollToElementById, openCurriculum } = useNavbarOptions();
+  const { content, language, setLanguage, toggleLanguage } = useLanguage();
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+
+  const pages: AppBarPagesType[] = [
+    {
+      id: "about-me",
+      name: content.nav.about,
+    },
+    { id: "curriculum", name: content.nav.resume },
+    { id: "contact", name: content.nav.contact },
+  ];
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -57,7 +61,7 @@ const AppBarComponent = () => {
                 noWrap
                 onClick={() => scrollToElementById("#")}
               >
-                HOME
+                {content.nav.home}
               </Typography>
             </LogoWrapper>
 
@@ -72,6 +76,33 @@ const AppBarComponent = () => {
                 </Button>
               ))}
             </ButtonsWrapper>
+
+            <LanguageSwitcher sx={{ display: { xs: "none", sm: "flex" } }}>
+              <Button
+                size="small"
+                onClick={() => setLanguage("en-us")}
+                sx={{
+                  color: "white",
+                  fontWeight: 700,
+                  borderBottom: language === "en-us" ? "2px solid white" : "2px solid transparent",
+                  borderRadius: 0,
+                }}
+              >
+                {content.nav.english}
+              </Button>
+              <Button
+                size="small"
+                onClick={() => setLanguage("pt-br")}
+                sx={{
+                  color: "white",
+                  fontWeight: 700,
+                  borderBottom: language === "pt-br" ? "2px solid white" : "2px solid transparent",
+                  borderRadius: 0,
+                }}
+              >
+                {content.nav.portuguese}
+              </Button>
+            </LanguageSwitcher>
 
             <HamburgerMenuWrapper sx={{ display: { xs: "flex", sm: "none" } }}>
               <IconButton
@@ -106,6 +137,20 @@ const AppBarComponent = () => {
                     </Typography>
                   </MenuItem>
                 ))}
+                <Divider />
+                <MenuItem
+                  onClick={() => {
+                    toggleLanguage();
+                    handleCloseNavMenu();
+                  }}
+                >
+                  <Typography textAlign="center">
+                    {content.nav.languageLabel}:{" "}
+                    {language === "en-us"
+                      ? content.nav.portuguese
+                      : content.nav.english}
+                  </Typography>
+                </MenuItem>
               </AppBarMenu>
             </HamburgerMenuWrapper>
           </AppBarToolbar>
@@ -119,20 +164,20 @@ const AppBarComponent = () => {
       >
         <ModalContainer>
           <Typography variant="h5" sx={{ fontWeight: 600 }}>
-            Select the curriculum language
+            {content.nav.resumeModalTitle}
           </Typography>
           <ModalContent>
             <ModalContentButton
               variant="contained"
               onClick={() => openCurriculum("en-us")}
             >
-              English - US
+              {content.nav.resumeModalPrimary}
             </ModalContentButton>
             <ModalContentButton
               variant="contained"
               onClick={() => openCurriculum("pt-br")}
             >
-              Portuguese - BR
+              {content.nav.resumeModalSecondary}
             </ModalContentButton>
           </ModalContent>
         </ModalContainer>

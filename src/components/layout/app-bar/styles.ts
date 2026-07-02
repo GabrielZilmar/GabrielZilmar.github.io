@@ -16,6 +16,13 @@ export const ButtonsWrapper = styled(Box)({
   justifyContent: "flex-end",
 });
 
+export const LanguageSwitcher = styled(Box)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  gap: theme.spacing(1),
+  marginLeft: theme.spacing(1.5),
+}));
+
 export const HamburgerMenuWrapper = styled(Box)({
   flexGrow: 0,
 });

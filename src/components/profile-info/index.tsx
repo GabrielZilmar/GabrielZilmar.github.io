@@ -1,8 +1,13 @@
-import { Typography, Chip } from "@mui/material";
+import { Button, Chip, Stack, Typography } from "@mui/material";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import ContainerLayout from "~/components/layout/Container/Container";
+import { useLanguage } from "~/i18n/language-context";
 import {
+  HeroActions,
+  HeroEyebrow,
+  HighlightCard,
+  HighlightLabel,
+  HighlightValue,
   InfoDescriptionWrapper,
   InfoTitle,
   InfoWrapper,
@@ -10,79 +15,79 @@ import {
   TechnologiesWrapper,
   TechnologiesContainer,
   ProfilePhotoCard,
+  MetaPills,
 } from "~/components/profile-info/styles";
-import { useViewport } from "~/hooks";
-import { EXTRA_SMALL_BREAKPOINT, theme } from "~/styles/theme";
-
-const DEFAULT_IMAGE_SIZE = "416";
-const EXTRA_SMALL_IMAGE_SIZE = "130";
-const SMALL_IMAGE_SIZE = "160";
-const MEDIUM_IMAGE_SIZE = "316";
-
-const TECHNOLOGIES = [
-  "Typescript",
-  "NodeJS",
-  "ReactJS",
-  "NextJS",
-  "PostgreSQL",
-];
 
 const ProfileInfo: React.FC = () => {
-  const viewport = useViewport();
-  const [imageSize, setImageSize] = useState<string>("476");
-
-  useEffect(() => {
-    const currentWidth = viewport.width;
-    const smallBreakpoint = theme.breakpoints.values["sm"];
-    const mediumBreakpoint = theme.breakpoints.values["md"];
-
-    if (currentWidth <= EXTRA_SMALL_BREAKPOINT) {
-      setImageSize(EXTRA_SMALL_IMAGE_SIZE);
-    } else if (currentWidth <= smallBreakpoint) {
-      setImageSize(SMALL_IMAGE_SIZE);
-    } else if (currentWidth <= mediumBreakpoint) {
-      setImageSize(MEDIUM_IMAGE_SIZE);
-    } else {
-      setImageSize(DEFAULT_IMAGE_SIZE);
-    }
-  }, [viewport]);
+  const { content } = useLanguage();
 
   return (
     <ContainerLayout id="#">
       <InfoWrapper>
-        <InfoTitle variant="h4">Gabriel Zilmar</InfoTitle>
-        <InfoTitle variant="h5">Software Engineer</InfoTitle>
+        <HeroEyebrow variant="caption">{content.profile.eyebrow}</HeroEyebrow>
+        <InfoTitle variant="h2">{content.profile.title}</InfoTitle>
+        <InfoTitle variant="h5">{content.profile.subtitle}</InfoTitle>
         <InfoDescriptionWrapper>
-          <Typography>Computer Science Graduate from PUC Minas.</Typography>
-          <Typography>
-            Working with variate technologies, focus in <b>Typescript</b> and
-            most modern stacks, and always looking for a <b>clean code</b> and a{" "}
-            <b>clean architecture</b>.
-          </Typography>
-          <Typography>
-            I have experience with new projects, talking with clients, and
-            MicroServices.
-          </Typography>
-          <TechnologiesContainer>
-            <TechnologiesWrapper
-              spacing={1}
-              alignItems="center"
-              direction="row"
-            >
-              {TECHNOLOGIES.map((technology) => (
-                <Chip key={technology} label={technology} color="secondary" />
-              ))}
-            </TechnologiesWrapper>
-          </TechnologiesContainer>
+          {content.profile.descriptions.map((description) => (
+            <Typography key={description}>{description}</Typography>
+          ))}
         </InfoDescriptionWrapper>
+        <MetaPills direction="row">
+          {content.profile.metaChips.map((chip) => (
+            <Chip key={chip} label={chip} variant="outlined" />
+          ))}
+        </MetaPills>
+        <TechnologiesContainer>
+          <Typography variant="subtitle2" color="text.secondary">
+            {content.profile.technologiesLabel}
+          </Typography>
+          <TechnologiesWrapper spacing={1} alignItems="center" direction="row">
+            {content.profile.technologies.map((technology) => (
+              <Chip key={technology} label={technology} color="secondary" />
+            ))}
+          </TechnologiesWrapper>
+        </TechnologiesContainer>
+        <Stack spacing={1.5}>
+          {content.profile.highlights.map(({ label, value }) => (
+            <HighlightCard key={label}>
+              <HighlightLabel variant="caption">{label}</HighlightLabel>
+              <HighlightValue variant="body2" sx={{ whiteSpace: "pre-line" }}>
+                {value}
+              </HighlightValue>
+            </HighlightCard>
+          ))}
+        </Stack>
+        <HeroActions direction={{ xs: "column", sm: "row" }}>
+          <Button
+            variant="contained"
+            href={content.profile.ctas.primaryHref}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {content.profile.ctas.primary}
+          </Button>
+          <Button
+            variant="outlined"
+            href={content.profile.ctas.secondaryHref}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {content.profile.ctas.secondary}
+          </Button>
+          <Button variant="text" href="#contact">
+            {content.profile.ctas.contact}
+          </Button>
+        </HeroActions>
       </InfoWrapper>
       <PhotoWrapper>
         <ProfilePhotoCard>
           <Image
-            alt="Profile Photo"
-            src="/assets/images/profile.webp"
-            width={imageSize}
-            height={imageSize}
+            alt={content.profile.photoAlt}
+            src="/assets/images/profile.jpeg"
+            width={1024}
+            height={1024}
+            priority
+            sizes="(max-width: 900px) 90vw, 27rem"
           />
         </ProfilePhotoCard>
       </PhotoWrapper>

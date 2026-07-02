@@ -5,6 +5,7 @@ import { AppContainer } from "~/components/layout/AppContainer";
 import { theme } from "~/styles/theme";
 import AppBar from "~/components/layout/app-bar/AppBar";
 import CurriculumModalProvider from "~/hooks/useCurriculumModal";
+import LanguageProvider from "~/i18n/language-context";
 import { ToastContainer } from "react-toastify";
 
 import "../styles/globals.css";
@@ -14,16 +15,18 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
-        <CurriculumModalProvider>
-          <AppBar />
-        </CurriculumModalProvider>
-        <AppContainer>
-          <Component {...pageProps} />
-          <ToastContainer />
-        </AppContainer>
+        <LanguageProvider>
+          <CurriculumModalProvider>
+            <AppBar />
+          </CurriculumModalProvider>
+          <AppContainer>
+            <Component {...pageProps} />
+            <ToastContainer />
+          </AppContainer>
+        </LanguageProvider>
         <CssBaseline />
       </ThemeProvider>
     </>
